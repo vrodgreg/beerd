@@ -1,4 +1,109 @@
+header {
+  background-color: black;
+  height: 70px;
+  width: 100%;
+  text-align: center;
+  padding-top: 5px;
+}
+
 .App {
+  background-color: black;
+}
+
+#beerHouse {
+  height: 80%
+}
+
+.home img {
+  width: 100%;
+}
+
+.home Link,
+a {
+  text-decoration: none;
+}
+
+.home p {
+  font-size: 3em;
+  color: white;
+  text-shadow: 2px 2px 8px black;
+}
+
+.homeSec {
+  position: relative;
+  margin-top: 2%
+}
+
+.homeSec p {
+  width: 80%;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 25px;
+  left: 10%;
+  text-align: center;
+  z-index: 1;
+}
+
+#myBeers {
+  display: flex;
+  flex-direction: row;
+  margin-top: 2%
+}
+
+.mySec {
+  position: relative;
+}
+
+.mySec p {
+  width: 80%;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 25px;
+  left: 10%;
+  text-align: center;
+  z-index: 1;
+  font-size: 1.25em;
+  color: white;
+  text-shadow: 2px 2px 6px black;
+}
+
+.allBeerList {
+  color: white;
+  margin: auto;
+}
+
+.beerDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 10px;
+  padding: 10px;
+
+}
+
+/* .beerImageSection {
+
+} */
+
+.beerDetailSection {
+  margin-left: 10px;
+  padding-left: 10px;
+  font-size: .75em;
+  width: 40%;
+}
+
+/* .beerDetailSection h1 {
+  border: solid 1px red;
+  /* text-shadow: 2px 2px 2px #E35F21; */
+  /* font-size: 1.5em; */
+/* } */ 
+
+/* .pageButtons {
+  position:absolute;
+  bottom: 0;
+} */
+
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +140,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
