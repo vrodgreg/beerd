@@ -6,6 +6,18 @@ header {
   padding-top: 5px;
 }
 
+a:link {
+  color: #e35f21;
+}
+
+a:visited {
+  color: #945600;
+}
+
+a:hover {
+  color: #c75000;
+}
+
 .App {
   background-color: black;
 }
@@ -13,6 +25,7 @@ header {
 #beerHouse {
   height: 80%
 }
+
 
 .home {
   margin:auto;
@@ -80,8 +93,9 @@ a {
 .beerDiv {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  margin: 10px;
+  justify-content: space-between;
+  max-width: 600px;
+ margin:auto;
   padding: 10px;
 
 }
@@ -98,17 +112,19 @@ a {
   flex-direction: row;
   justify-content: space-between;
   margin: auto;
-  padding: 20px;
+ padding-bottom: 10px;
   max-width: 800px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .detailsDescription {
   margin: auto;
-  /* padding-left: 35px;
-  padding-right: 35px; */
+padding-bottom: 10px;;
   width: 90%;
   max-width: 800px;
   border-top: solid 1px #E35F21;
+  color: white;
 }
 
 .pairing {
@@ -128,15 +144,28 @@ a {
   color:white;
 }
 
+.detailsImage {
+  width: 50%;
+  height: auto;
+}
+
 .beerDetailSection {
   text-decoration: none;
   color: white;
+  text-align: left;
+  width: 60%;
   margin-top: -20px;
   margin-left: 20px;
 }
 
 .beerDetailSection ul {
-  margin-left: -20px;
+  margin-left: -40px;
+  list-style: none;
+}
+
+.beerDetailSection li::before {
+  content: "■ ";
+  color: #E35F21;
 }
 
 /* .detailsImageSection {
@@ -147,62 +176,61 @@ a {
   font-size: 1.5em;
 }
 
+.ingredMain {
+  margin: auto;
+  /* padding: 20px; */
+  max-width: 800px;
+  border-top: solid 1px #E35F21;
+}
+
 .ingredients {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  padding-top: -20px;
 }
 
-.ingredients p {
-  width: 22.5%;
-}
-
-/* .beerDetailSection h1 {
-  border: solid 1px red;
-  /* text-shadow: 2px 2px 2px #E35F21; */
-  /* font-size: 1.5em; */
-/* } */ 
-
-/* .pageButtons {
-  position:absolute;
-  bottom: 0;
+/* .ingredients p {
+  margin-bottom: -20px
 } */
 
-/* .App {
-  text-align: center;
+.ingredients ul {
+  margin-left: -20px;
+  list-style: none;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.ingredients li::before {
+  content: "■ ";
+  color: #E35F21;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.detailsDetailSection li::before {
+  content: "■ ";
+  color: #E35F21;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.detailsDetailSection ul {
+  margin-left: -35px;
+  list-style: none;
+}
+
+#breweryImage {
+height: 75px;
+}
+
+.brewerySect {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-direction: row;
 }
 
-.App-link {
-  color: #61dafb;
+.brewerySect2 {
+  margin-left: 20px;
+  margin-top: -15px;
+  font-size: .75em;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
+.brewerySect2 a {
+  color: #e35f21;
+}
+
+

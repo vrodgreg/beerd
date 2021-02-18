@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function Home(props) {
   return (
     <div>
-      <Link to="./">
+      <Link to="/">
         <header>
           <img
             id="beerHouse"

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-// import { useEffect } from 'react';
 
 function AllBeers(props) {
   let [beers, setBeers] = useState([]);
@@ -19,9 +18,6 @@ function AllBeers(props) {
       });
   }, [page]);
 
-  console.log(beers);
-  // console.log(currentBeerList);
-
   const showPageButtons = () => {
     let arr = [];
     for (let i = 1; i <= beers.numberOfPages; i++) {
@@ -38,23 +34,12 @@ function AllBeers(props) {
 
   const showBeers = () => {
     return currentBeerList.map((eachBeer) => {
-      console.log(eachBeer.name);
-
       return (
         <Link to={`/AllBeers/${eachBeer.id}`}>
         <div className="beerDiv">
-
           <section className="beerImgSection">
           {eachBeer.labels ? <img src={eachBeer.labels.large} height="150" alt="beer label"/> : <img src='/images/noImage.jpg' height="150" alt='no label'/>}
           </section>
-
-          {/* <section className="beerDetailSection">
-            <h1>{eachBeer.name}</h1>
-            {eachBeer.style ? <p>Style: {eachBeer.style.category.name}</p> : <p>Style:  NOT LISTED</p>}
-            <p>ABV: {eachBeer.abv}</p>
-            <p>IBU: {eachBeer.ibu}</p>
-            {eachBeer.breweries ? <p>Brewery: {eachBeer.breweries[0].name}</p> : <p>Brewery: Not Listed</p>}
-          </section> */}
 
           <section className="beerDetailSection">
             <h1>{eachBeer.name}</h1>
@@ -65,7 +50,6 @@ function AllBeers(props) {
             {eachBeer.breweries ? <li>Brewery: {eachBeer.breweries[0].name}</li> : <li>Brewery: Not Listed</li>}
             </ul>
           </section>
-
         </div>
         </Link>
       );
@@ -74,7 +58,7 @@ function AllBeers(props) {
 
   return (
     <div>
-      <Link to="./">
+      <Link to="/">
         <header>
           <img
             id="beerHouse"
@@ -84,10 +68,7 @@ function AllBeers(props) {
         </header>
       </Link>
 
-      {/* <div>{showBeers()}</div> */}
-
       <div className="pageButtons">
-        {/* <button onClick={(e)=>setPage(e.target.value)} value={2}>NEXT PAGE</button> */}
         <section className="allBeerList">
         {showBeers()}
         </section>
