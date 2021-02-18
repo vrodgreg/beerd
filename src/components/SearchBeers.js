@@ -6,7 +6,7 @@ function SearchBeers(props) {
     <div>
       <Link to="./">
         <header>
-        <img id="beerHouse" src="./images/beerHome.png" alt="little home icon" />
+        <img id="beerHouse" src="/images/beerHome.png" alt="little home icon" />
         </header>
       </Link>
     </div>

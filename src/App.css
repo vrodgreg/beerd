@@ -14,6 +14,11 @@ header {
   height: 80%
 }
 
+.home {
+  margin:auto;
+  max-width: 800px;
+}
+
 .home img {
   width: 100%;
 }
@@ -81,15 +86,75 @@ a {
 
 }
 
-/* .beerImageSection {
+.WTF {
+  color: white;
+  min-height: 300px;
+  background-color: black;
+  margin:auto;
+}
 
-} */
+.detailsTop {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: auto;
+  padding: 20px;
+  max-width: 800px;
+}
+
+.detailsDescription {
+  margin: auto;
+  /* padding-left: 35px;
+  padding-right: 35px; */
+  width: 90%;
+  max-width: 800px;
+  border-top: solid 1px #E35F21;
+}
+
+.pairing {
+  width: 45%;
+  margin: 5px;
+  border-top: solid 1px #E35F21;
+}
+
+.detailsDetailSection {
+  border: solid 1ps green;
+  margin-right: 5px;
+  padding-right: 5px;
+  font-size: 1em;
+  width: 40%;
+  text-align: left;
+  text-decoration: none;
+  color:white;
+}
 
 .beerDetailSection {
-  margin-left: 10px;
-  padding-left: 10px;
-  font-size: .75em;
-  width: 40%;
+  text-decoration: none;
+  color: white;
+  margin-top: -20px;
+  margin-left: 20px;
+}
+
+.beerDetailSection ul {
+  margin-left: -20px;
+}
+
+/* .detailsImageSection {
+  border: solid 1px purple;
+} */
+
+#detailsName {
+  font-size: 1.5em;
+}
+
+.ingredients {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.ingredients p {
+  width: 22.5%;
 }
 
 /* .beerDetailSection h1 {

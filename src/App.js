@@ -22,7 +22,7 @@ function App() {
       <Switch>
         <Route exact path="/" render={(props) => <Home {...props} />} />
         <Route exact path="/AllBeers" render={(props) => <AllBeers {...props} />} />
-        <Route exact path="/BeerDetails" render={(props) => <BeerDetails {...props} />} />
+        <Route exact path="/AllBeers/:id" render={(props) => <BeerDetails {...props} />} />
         <Route exact path="/Breweries" render={(props) => <Breweries {...props} />} />
         <Route exact path="/BreweryDetails" render={(props) => <BreweryDetails {...props} />} />
         <Route exact path="/ByStyle" render={(props) => <ByStyle {...props} />} />

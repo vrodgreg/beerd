@@ -41,23 +41,33 @@ function AllBeers(props) {
       console.log(eachBeer.name);
 
       return (
-        // <Link to={`/beers/${eachBeer._id}`}>
+        <Link to={`/AllBeers/${eachBeer.id}`}>
         <div className="beerDiv">
 
           <section className="beerImgSection">
-          {eachBeer.labels ? <img src={eachBeer.labels.large} height="150" alt="beer label"/> : <img src='./images/noImage.jpg' height="150" alt='no label'/>}
+          {eachBeer.labels ? <img src={eachBeer.labels.large} height="150" alt="beer label"/> : <img src='/images/noImage.jpg' height="150" alt='no label'/>}
           </section>
 
-          <section className="beerDetailSection">
+          {/* <section className="beerDetailSection">
             <h1>{eachBeer.name}</h1>
             {eachBeer.style ? <p>Style: {eachBeer.style.category.name}</p> : <p>Style:  NOT LISTED</p>}
             <p>ABV: {eachBeer.abv}</p>
             <p>IBU: {eachBeer.ibu}</p>
             {eachBeer.breweries ? <p>Brewery: {eachBeer.breweries[0].name}</p> : <p>Brewery: Not Listed</p>}
+          </section> */}
+
+          <section className="beerDetailSection">
+            <h1>{eachBeer.name}</h1>
+            <ul>
+            {eachBeer.style ? <li>Style: {eachBeer.style.category.name}</li> : <li>Style:  NOT LISTED</li>}
+            <li>ABV: {eachBeer.abv}</li>
+            <li>IBU: {eachBeer.ibu}</li>
+            {eachBeer.breweries ? <li>Brewery: {eachBeer.breweries[0].name}</li> : <li>Brewery: Not Listed</li>}
+            </ul>
           </section>
 
         </div>
-        // {/* </Link> */}
+        </Link>
       );
     });
   };
@@ -68,7 +78,7 @@ function AllBeers(props) {
         <header>
           <img
             id="beerHouse"
-            src="./images/beerHome.png"
+            src="/images/beerHome.png"
             alt="little home icon"
           />
         </header>

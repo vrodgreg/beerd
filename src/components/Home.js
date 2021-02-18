@@ -8,7 +8,7 @@ function Home(props) {
         <header>
           <img
             id="beerHouse"
-            src="./images/beerHome.png"
+            src="/images/beerHome.png"
             alt="little home icon"
           />
         </header>
