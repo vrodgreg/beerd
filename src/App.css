@@ -327,3 +327,30 @@ column-count: 3;
   margin: 5px;
   font-weight: bold;
 }
+
+.beerList {
+  max-width: 400px;
+  margin:auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+#beerListName {
+  width: 60%;
+}
+
+/* #beerListIamge {
+  margin-right: 15px;
+  padding-right: 15px;
+} */
+
+.beerListTop {
+  min-height: 1000px;
+}
+
+#beerListH1 {
+  color: white;
+  text-align: center;
+}
