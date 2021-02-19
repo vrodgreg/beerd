@@ -1,10 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+// import ReactDOM from 'react-dom';
 import axios from "axios";
+import Modal from 'react-modal'
+
+Modal.setAppElement("#root");
 
 function BeerDetails(props) {
   let [currentBeer, setCurrentBeer] = useState({});
   let [dadJokes, setDadJokes] = useState([]);
+
+  //>>>>>>>>>>>>>>>>>>line 14-18 is Modal
+  const [isOpen, setIsOpen] = useState(false);
+
+  function toggleModal() {
+    setIsOpen(!isOpen);
+  }
 
   useEffect(() => {
     axios
@@ -25,6 +36,27 @@ function BeerDetails(props) {
         setDadJokes(res.data);
       });
   }, []);
+
+  //>>>>>>REACT MODAL CODE FOLLOWS
+  // ReactModal.setAppElement('#main');
+
+  // var subtitle;
+  // const [modalIsOpen,setIsOpen] = React.useState(false);
+
+  // function openModal() {
+  //   setIsOpen(true);
+  // }
+
+  // function afterOpenModal() {
+  //   // references are now sync'd and can be accessed.
+  //   subtitle.style.color = '#f00';
+  // }
+ 
+  // function closeModal(){
+  //   setIsOpen(false);
+  // }
+
+
 
   //>>>>>>> check for ingredients and set ingredient category arrays
   let hops = [],
@@ -51,17 +83,9 @@ function BeerDetails(props) {
     : (crDate = "None Given");
 
   //>>>>  Pop up box for description of style
-  // let descrText = currentBeer.style.description;
-  // console.log(descrText);
 
-  // const message = () => {
-  //   <div id="myModal" class="modal">
-  //     <div class="modal-content">
-  //       <span class="close">&times;</span>
-  //       <p>{descrText}</p>
-  //     </div>
-  //   </div>;
-  // };
+
+
 
   return (
     <div>
@@ -74,6 +98,25 @@ function BeerDetails(props) {
           />
         </header>
       </Link>
+
+{/* THIS DIV IS THE MODAL CODE TO FOLLOW */}
+<div className="App">
+      <button onClick={toggleModal}>Open modal</button>
+
+      <Modal
+        isOpen={isOpen}
+        onRequestClose={toggleModal}
+        contentLabel="My dialog"
+        className="mymodal"
+        overlayClassName="myoverlay"
+        closeTimeoutMS={500}
+      >
+        <div>My modal dialog.</div>
+        <button onClick={toggleModal}>Close modal</button>
+      </Modal>
+      </div>
+
+
 
       <div className="WTF">
         <div className="detailsTop">

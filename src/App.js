@@ -16,8 +16,12 @@ import SearchBeers from './components/SearchBeers'
 import WishBeers from './components/WishBeers'
 
 function App() {
+
   return (
-    <div className="App">
+
+
+  
+    <div className="App" id="root">
       
       <Switch>
         <Route exact path="/" render={(props) => <Home {...props} />} />
