@@ -10,6 +10,8 @@ function BeerDetails(props) {
   let [currentBeer, setCurrentBeer] = useState({});
   let [dadJokes, setDadJokes] = useState([]);
 
+  console.log(props)
+
   //>>>>>>>>>>>>>>>>>>line 14-18 is Modal
   const [isOpen, setIsOpen] = useState(false);
 
@@ -37,27 +39,6 @@ function BeerDetails(props) {
       });
   }, []);
 
-  //>>>>>>REACT MODAL CODE FOLLOWS
-  // ReactModal.setAppElement('#main');
-
-  // var subtitle;
-  // const [modalIsOpen,setIsOpen] = React.useState(false);
-
-  // function openModal() {
-  //   setIsOpen(true);
-  // }
-
-  // function afterOpenModal() {
-  //   // references are now sync'd and can be accessed.
-  //   subtitle.style.color = '#f00';
-  // }
- 
-  // function closeModal(){
-  //   setIsOpen(false);
-  // }
-
-
-
   //>>>>>>> check for ingredients and set ingredient category arrays
   let hops = [],
     malt = [],
@@ -83,9 +64,6 @@ function BeerDetails(props) {
     : (crDate = "None Given");
 
   //>>>>  Pop up box for description of style
-
-
-
 
   return (
     <div>
@@ -115,7 +93,7 @@ function BeerDetails(props) {
         <button onClick={toggleModal}>Close modal</button>
       </Modal>
       </div>
-
+{/* MODAL CODE ENDS HERE */}
 
 
       <div className="WTF">
@@ -196,11 +174,13 @@ function BeerDetails(props) {
             {currentBeer.breweries ? (
               <section className="brewerySect">
                 {currentBeer.breweries[0].images.squareLarge ? (
+                  <Link to={`/Breweries/${currentBeer.breweries[0].id}`}>
                   <img
                     id="breweryImage"
                     src={currentBeer.breweries[0].images.squareLarge}
                     alt="brewery logo"
                   />
+                  </Link>
                 ) : (
                   <img
                     id="breweryImage"
@@ -210,7 +190,9 @@ function BeerDetails(props) {
                 )}
 
                 <section className="brewerySect2">
+                <Link to={`/Breweries/${currentBeer.breweries[0].id}`}>
                   <p>{currentBeer.breweries[0].name}</p>
+                  </Link>
                   <p>
                     {currentBeer.breweries[0].locations[0].locality},{" "}
                     {currentBeer.breweries[0].locations[0].region}
