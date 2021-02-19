@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 // import ReactDOM from 'react-dom';
 import axios from "axios";
-import Modal from 'react-modal'
+import Modal from "react-modal";
 
 Modal.setAppElement("#root");
 
@@ -10,7 +10,7 @@ function BeerDetails(props) {
   let [currentBeer, setCurrentBeer] = useState({});
   let [dadJokes, setDadJokes] = useState([]);
 
-  console.log(props)
+  console.log(props);
 
   //>>>>>>>>>>>>>>>>>>line 14-18 is Modal
   const [isOpen, setIsOpen] = useState(false);
@@ -27,7 +27,7 @@ function BeerDetails(props) {
       .then((res) => {
         setCurrentBeer(res.data.data[0]);
       });
-  }, []);
+  }, );
 
   useEffect(() => {
     axios
@@ -77,24 +77,23 @@ function BeerDetails(props) {
         </header>
       </Link>
 
-{/* THIS DIV IS THE MODAL CODE TO FOLLOW */}
-<div className="App">
-      <button onClick={toggleModal}>Open modal</button>
+      {/* THIS DIV IS THE MODAL CODE TO FOLLOW */}
+      <div className="App">
+        <button onClick={toggleModal}>Open modal</button>
 
-      <Modal
-        isOpen={isOpen}
-        onRequestClose={toggleModal}
-        contentLabel="My dialog"
-        className="mymodal"
-        overlayClassName="myoverlay"
-        closeTimeoutMS={500}
-      >
-        <div>My modal dialog.</div>
-        <button onClick={toggleModal}>Close modal</button>
-      </Modal>
+        <Modal
+          isOpen={isOpen}
+          onRequestClose={toggleModal}
+          contentLabel="My dialog"
+          className="mymodal"
+          overlayClassName="myoverlay"
+          closeTimeoutMS={500}
+        >
+          <div>My modal dialog.</div>
+          <button onClick={toggleModal}>Close modal</button>
+        </Modal>
       </div>
-{/* MODAL CODE ENDS HERE */}
-
+      {/* MODAL CODE ENDS HERE */}
 
       <div className="WTF">
         <div className="detailsTop">
@@ -135,7 +134,12 @@ function BeerDetails(props) {
               alt="beer label"
             />
           ) : (
-            <img className="detailsImage" src="/images/noImage.jpg" width="50%" alt="no label" />
+            <img
+              className="detailsImage"
+              src="/images/noImage.jpg"
+              width="50%"
+              alt="no label"
+            />
           )}
         </div>
 
@@ -175,11 +179,11 @@ function BeerDetails(props) {
               <section className="brewerySect">
                 {currentBeer.breweries[0].images.squareLarge ? (
                   <Link to={`/Breweries/${currentBeer.breweries[0].id}`}>
-                  <img
-                    id="breweryImage"
-                    src={currentBeer.breweries[0].images.squareLarge}
-                    alt="brewery logo"
-                  />
+                    <img
+                      id="breweryImage"
+                      src={currentBeer.breweries[0].images.squareLarge}
+                      alt="brewery logo"
+                    />
                   </Link>
                 ) : (
                   <img
@@ -190,14 +194,14 @@ function BeerDetails(props) {
                 )}
 
                 <section className="brewerySect2">
-                <Link to={`/Breweries/${currentBeer.breweries[0].id}`}>
-                  <p>{currentBeer.breweries[0].name}</p>
+                  <Link to={`/Breweries/${currentBeer.breweries[0].id}`}>
+                    <p>{currentBeer.breweries[0].name}</p>
                   </Link>
                   <p>
                     {currentBeer.breweries[0].locations[0].locality},{" "}
                     {currentBeer.breweries[0].locations[0].region}
                   </p>
-                  <a href={currentBeer.breweries[0].website} target="_blank">
+                  <a href={currentBeer.breweries[0].website} target="_blank" rel="noreferrer">
                     {currentBeer.breweries[0].website}
                   </a>
                 </section>

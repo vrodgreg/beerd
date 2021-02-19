@@ -15,7 +15,7 @@ function BreweryDetails(props) {
       .then((res) => {
         setBrewery(res.data.data[0]);
       });
-  }, []);
+  }, );
 
   useEffect(() => {
     axios
@@ -25,7 +25,7 @@ function BreweryDetails(props) {
       .then((res) => {
         setBeerList(res.data.data);
       });
-  }, []);
+  }, );
 
   useEffect(() => {
     axios
@@ -83,7 +83,7 @@ function BreweryDetails(props) {
             )}
 
             <li>
-              <a href={brewery.website} target="_blank">
+              <a href={brewery.website} target="_blank" rel="noreferrer">
                 {brewery.website}
               </a>
             </li>
@@ -119,7 +119,7 @@ function BreweryDetails(props) {
             {socAcc ? (
                 <ul>
                   {socAcc.map((eachIng) => (
-                    <li><a href={eachIng.socialMedia.website} target="_blank">
+                    <li><a href={eachIng.socialMedia.website} target="_blank" rel="noreferrer">
                     {eachIng.socialMedia.name}
               </a></li>
                   ))}
@@ -138,7 +138,7 @@ function BreweryDetails(props) {
             {guildList ? (
                 <ul>
                   {guildList.map((eachIng) => (
-                    <li><a href={eachIng.website} target="_blank">
+                    <li><a href={eachIng.website} target="_blank" rel="noreferrer">
                     {eachIng.name}
               </a></li>
                   ))}
