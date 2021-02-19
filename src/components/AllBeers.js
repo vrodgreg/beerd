@@ -10,7 +10,7 @@ function AllBeers(props) {
   useEffect(() => {
     axios
       .get(
-        `https://sandbox-api.brewerydb.com/v2/beers?p=${page}&withBreweries=Y&key=1377adada9f4a5816832d6b99943e0db`
+        `https://sandbox-api.brewerydb.com/v2/beers?p=${page}&withBreweries=Y&key=4187045c8fc67d4d7636b85848c8ce67`
       )
       .then((res) => {
         setBeers(res.data);
@@ -36,21 +36,37 @@ function AllBeers(props) {
     return currentBeerList.map((eachBeer) => {
       return (
         <Link to={`/AllBeers/${eachBeer.id}`}>
-        <div className="beerDiv">
-          <section className="beerImgSection">
-          {eachBeer.labels ? <img src={eachBeer.labels.large} height="150" alt="beer label"/> : <img src='/images/noImage.jpg' height="150" alt='no label'/>}
-          </section>
+          <div className="beerDiv">
+            <section className="beerImgSection">
+              {eachBeer.labels ? (
+                <img
+                  src={eachBeer.labels.large}
+                  height="150"
+                  alt="beer label"
+                />
+              ) : (
+                <img src="/images/noImage.jpg" height="150" alt="no label" />
+              )}
+            </section>
 
-          <section className="beerDetailSection">
-            <h1>{eachBeer.name}</h1>
-            <ul>
-            {eachBeer.style ? <li>Style: {eachBeer.style.category.name}</li> : <li>Style:  NOT LISTED</li>}
-            <li>ABV: {eachBeer.abv}</li>
-            <li>IBU: {eachBeer.ibu}</li>
-            {eachBeer.breweries ? <li>Brewery: {eachBeer.breweries[0].name}</li> : <li>Brewery: Not Listed</li>}
-            </ul>
-          </section>
-        </div>
+            <section className="beerDetailSection">
+              <h1>{eachBeer.name}</h1>
+              <ul>
+                {eachBeer.style ? (
+                  <li>Style: {eachBeer.style.category.name}</li>
+                ) : (
+                  <li>Style: NOT LISTED</li>
+                )}
+                <li>ABV: {eachBeer.abv}</li>
+                <li>IBU: {eachBeer.ibu}</li>
+                {eachBeer.breweries ? (
+                  <li>Brewery: {eachBeer.breweries[0].name}</li>
+                ) : (
+                  <li>Brewery: Not Listed</li>
+                )}
+              </ul>
+            </section>
+          </div>
         </Link>
       );
     });
@@ -69,9 +85,7 @@ function AllBeers(props) {
       </Link>
 
       <div className="pageButtons">
-        <section className="allBeerList">
-        {showBeers()}
-        </section>
+        <section className="allBeerList">{showBeers()}</section>
         <p>Page</p>
         {showPageButtons()}
       </div>

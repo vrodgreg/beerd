@@ -9,8 +9,7 @@ Modal.setAppElement("#root");
 function BeerDetails(props) {
   let [currentBeer, setCurrentBeer] = useState({});
   let [dadJokes, setDadJokes] = useState([]);
-
-  console.log(props);
+  let tastedBeer = {};
 
   //>>>>>>>>>>>>>>>>>>line 14-18 is Modal
   const [isOpen, setIsOpen] = useState(false);
@@ -19,15 +18,62 @@ function BeerDetails(props) {
     setIsOpen(!isOpen);
   }
 
+
+  const postBeer = () => {
+    console.log(currentBeer);
+    currentBeer.labels && currentBeer.labels.large
+      ? (tastedBeer = {
+          id: currentBeer.id,
+          name: currentBeer.name,
+          image: currentBeer.labels.large,
+        })
+      : (tastedBeer = {
+          id: currentBeer.id,
+          name: currentBeer.name,
+          image: "/images/noImage.jpg",
+        });
+
+    console.log(tastedBeer);
+    console.log("here we are in post beer");
+
+    axios.post('https://ironrest.herokuapp.com/beerdBeerList', tastedBeer)
+    .then(res => {
+      console.log(res)
+    })
+  }
+
+  const postWish = () => {
+    console.log(currentBeer);
+    currentBeer.labels && currentBeer.labels.large
+      ? (tastedBeer = {
+          id: currentBeer.id,
+          name: currentBeer.name,
+          image: currentBeer.labels.large,
+        })
+      : (tastedBeer = {
+          id: currentBeer.id,
+          name: currentBeer.name,
+          image: "/images/noImage.jpg",
+        });
+
+    console.log(tastedBeer);
+    console.log("here we are in post beer");
+
+    axios.post('https://ironrest.herokuapp.com/beerdWishList', tastedBeer)
+    .then(res => {
+      console.log(res)
+    })
+  }
+
   useEffect(() => {
     axios
       .get(
-        `https://sandbox-api.brewerydb.com/v2/beers?ids=${props.match.params.id}&withBreweries=Y&withIngredients=Y&key=1377adada9f4a5816832d6b99943e0db`
+        `https://sandbox-api.brewerydb.com/v2/beers?ids=${props.match.params.id}&withBreweries=Y&withIngredients=Y&key=4187045c8fc67d4d7636b85848c8ce67`
       )
       .then((res) => {
         setCurrentBeer(res.data.data[0]);
       });
-  }, );
+  }, []);
 
   useEffect(() => {
     axios
@@ -63,7 +109,21 @@ function BeerDetails(props) {
     ? (crDate = currentBeer.createDate.substr(0, 10))
     : (crDate = "None Given");
 
-  //>>>>  Pop up box for description of style
+  //>>>>>>>>>>>>>  Code for posting to beer list and wish list
+
+  //   let tastedBeer = {id: currentBeer.id, name: currentBeer.name};
+  //   console.log(currentBeer.id)
+  //  const postBeer = (e) => {
+  //     e.preventDefault()
+  //     console.log("in the postBeer function")
+  //     console.log(currentBeer)
+  //     console.log(tastedBeer)
+
+  //     // axios.post('https://ironrest.herokuapp.com/beerdbeers', { tastedBeer })
+  //     // .then(res => {
+  //     //   console.log(res)
+  //     // })
+  //   }
 
   return (
     <div>
@@ -78,7 +138,7 @@ function BeerDetails(props) {
       </Link>
 
       {/* THIS DIV IS THE MODAL CODE TO FOLLOW */}
-      <div className="App">
+      {/* <div className="App">
         <button onClick={toggleModal}>Open modal</button>
 
         <Modal
@@ -92,7 +152,7 @@ function BeerDetails(props) {
           <div>My modal dialog.</div>
           <button onClick={toggleModal}>Close modal</button>
         </Modal>
-      </div>
+      </div> */}
       {/* MODAL CODE ENDS HERE */}
 
       <div className="WTF">
@@ -119,25 +179,43 @@ function BeerDetails(props) {
               )}
               <li>Created: {crDate}</li>
               {currentBeer.style && currentBeer.style.name ? (
-                <li>Style: {currentBeer.style.name}</li>
+                <div>
+                  <li onClick={toggleModal} id="imposterLink">
+                    Style: {currentBeer.style.name}
+                  </li>
+                  <Modal
+                    isOpen={isOpen}
+                    onRequestClose={toggleModal}
+                    contentLabel="My dialog"
+                    className="mymodal"
+                    overlayClassName="myoverlay"
+                    closeTimeoutMS={500}
+                  >
+                    <div>{currentBeer.style.description}</div>
+                    <button onClick={toggleModal}>Close</button>
+                  </Modal>
+                </div>
               ) : (
                 <li>Style: None listed</li>
               )}
             </ul>
+
+            <div className="listButtons">
+              <button id="listBtn" onClick={() => {postBeer()}}>Add to Tasted</button>
+              <button id="listBtn" onClick={() => {postWish()}}>Add to Wish List</button>
+            </div>
           </section>
 
           {currentBeer.labels ? (
             <img
               className="detailsImage"
               src={currentBeer.labels.large}
-              width="50%"
               alt="beer label"
             />
           ) : (
             <img
               className="detailsImage"
               src="/images/noImage.jpg"
-              width="50%"
               alt="no label"
             />
           )}
@@ -201,7 +279,11 @@ function BeerDetails(props) {
                     {currentBeer.breweries[0].locations[0].locality},{" "}
                     {currentBeer.breweries[0].locations[0].region}
                   </p>
-                  <a href={currentBeer.breweries[0].website} target="_blank" rel="noreferrer">
+                  <a
+                    href={currentBeer.breweries[0].website}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     {currentBeer.breweries[0].website}
                   </a>
                 </section>

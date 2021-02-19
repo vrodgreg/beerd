@@ -10,7 +10,7 @@ function BreweryDetails(props) {
   useEffect(() => {
     axios
       .get(
-        `https://api.brewerydb.com/v2/breweries?ids=${props.match.params.id}&withSocialAccounts=Y&withGuilds=Y&withLocations=Y&key=1377adada9f4a5816832d6b99943e0db`
+        `https://api.brewerydb.com/v2/breweries?ids=${props.match.params.id}&withSocialAccounts=Y&withGuilds=Y&withLocations=Y&key=4187045c8fc67d4d7636b85848c8ce67`
       )
       .then((res) => {
         setBrewery(res.data.data[0]);
@@ -20,7 +20,7 @@ function BreweryDetails(props) {
   useEffect(() => {
     axios
       .get(
-        `https://api.brewerydb.com/v2//brewery/${props.match.params.id}/beers?&key=1377adada9f4a5816832d6b99943e0db`
+        `https://api.brewerydb.com/v2//brewery/${props.match.params.id}/beers?&key=4187045c8fc67d4d7636b85848c8ce67`
       )
       .then((res) => {
         setBeerList(res.data.data);
