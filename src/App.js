@@ -2,6 +2,10 @@ import React from 'react';
 // import Axios from 'axios'
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
+// import cors from 'cors'
+
+
+
 
 import Home from './components/Home'
 import AllBeers from './components/AllBeers'
@@ -15,15 +19,23 @@ import RandomBeer from './components/RandomBeer'
 import SearchBeers from './components/SearchBeers'
 import WishBeers from './components/WishBeers'
 
+
+
+
 function App() {
 
+
   return (
+
+
+
 
 
   
     <div className="App" id="root">
       
       <Switch>
+
         <Route exact path="/" render={(props) => <Home {...props} />} />
         <Route exact path="/AllBeers" render={(props) => <AllBeers {...props} />} />
         <Route exact path="/AllBeers/:id" render={(props) => <BeerDetails {...props} />} />
