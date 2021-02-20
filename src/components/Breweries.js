@@ -13,7 +13,7 @@ function Breweries(props) {
   useEffect(() => {
     axios
       .get(
-        `https://thingproxy.freeboard.io/fetch/https://api.brewerydb.com/v2/breweries?withLocations=Y&withSocialAccounts=Y&withGuilds=Y&key=4187045c8fc67d4d7636b85848c8ce67`
+        `https://iron-cors-anywhere.herokuapp.com/https://api.brewerydb.com/v2/breweries?withLocations=Y&withSocialAccounts=Y&withGuilds=Y&key=4187045c8fc67d4d7636b85848c8ce67`
       )
       .then((res) => {
         setBreweries(res.data.data);

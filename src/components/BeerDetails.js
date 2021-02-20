@@ -81,7 +81,7 @@ function BeerDetails(props) {
   useEffect(() => {
     axios
       .get(
-        `https://sandbox-api.brewerydb.com/v2/beers?ids=${props.match.params.id}&withBreweries=Y&withIngredients=Y&key=4187045c8fc67d4d7636b85848c8ce67`
+        `https://iron-cors-anywhere.herokuapp.com/https://sandbox-api.brewerydb.com/v2/beers?ids=${props.match.params.id}&withBreweries=Y&withIngredients=Y&key=4187045c8fc67d4d7636b85848c8ce67`
       )
       .then((res) => {
         setCurrentBeer(res.data.data[0]);

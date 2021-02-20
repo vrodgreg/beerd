@@ -10,7 +10,7 @@ function AllBeers(props) {
   useEffect(() => {
     axios
       .get(
-        `https://sandbox-api.brewerydb.com/v2/beers?p=${page}&withBreweries=Y&key=4187045c8fc67d4d7636b85848c8ce67`
+        `https://iron-cors-anywhere.herokuapp.com/https://sandbox-api.brewerydb.com/v2/beers?p=${page}&withBreweries=Y&key=4187045c8fc67d4d7636b85848c8ce67`
       )
       .then((res) => {
         setBeers(res.data);
