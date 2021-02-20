@@ -18,9 +18,33 @@ function BeerDetails(props) {
     setIsOpen(!isOpen);
   }
 
+  let [beersWish, setBeersWish] = useState([]);
+
+  useEffect(() => {
+    axios.get(`https://ironrest.herokuapp.com/beerdWishList`).then((res) => {
+      let tempData=res.data
+      let wish=false
+      for (let i=0; i<tempData.length; i++) {
+        if (tempData[i].id === props.match.params.id) {wish=true} 
+      }
+      setBeersWish(wish);
+    });
+  }, []);
+
+  let [beersMy, setBeersMy] = useState([]);
+
+  useEffect(() => {
+    axios.get(`https://ironrest.herokuapp.com/beerdBeerList`).then((res) => {
+      let tempData=res.data
+      let list=false
+      for (let i=0; i<tempData.length; i++) {
+        if (tempData[i].id === props.match.params.id) {list=true} 
+      }
+      setBeersMy(list);
+    });
+  }, []);
 
   const postBeer = () => {
-    console.log(currentBeer);
     currentBeer.labels && currentBeer.labels.large
       ? (tastedBeer = {
           id: currentBeer.id,
@@ -32,18 +56,12 @@ function BeerDetails(props) {
           name: currentBeer.name,
           image: "/images/noImage.jpg",
         });
-
-    console.log(tastedBeer);
-    console.log("here we are in post beer");
-
-    axios.post('https://ironrest.herokuapp.com/beerdBeerList', tastedBeer)
-    .then(res => {
-      console.log(res)
-    })
-  }
+    axios
+      .post("https://ironrest.herokuapp.com/beerdBeerList", tastedBeer)
+      .then((res) => {});
+  };
 
   const postWish = () => {
-    console.log(currentBeer);
     currentBeer.labels && currentBeer.labels.large
       ? (tastedBeer = {
           id: currentBeer.id,
@@ -55,15 +73,10 @@ function BeerDetails(props) {
           name: currentBeer.name,
           image: "/images/noImage.jpg",
         });
-
-    console.log(tastedBeer);
-    console.log("here we are in post beer");
-
-    axios.post('https://ironrest.herokuapp.com/beerdWishList', tastedBeer)
-    .then(res => {
-      console.log(res)
-    })
-  }
+    axios
+      .post("https://ironrest.herokuapp.com/beerdWishList", tastedBeer)
+      .then((res) => {});
+  };
 
   useEffect(() => {
     axios
@@ -108,22 +121,6 @@ function BeerDetails(props) {
   currentBeer.createDate
     ? (crDate = currentBeer.createDate.substr(0, 10))
     : (crDate = "None Given");
-
-  //>>>>>>>>>>>>>  Code for posting to beer list and wish list
-
-  //   let tastedBeer = {id: currentBeer.id, name: currentBeer.name};
-  //   console.log(currentBeer.id)
-  //  const postBeer = (e) => {
-  //     e.preventDefault()
-  //     console.log("in the postBeer function")
-  //     console.log(currentBeer)
-  //     console.log(tastedBeer)
-
-  //     // axios.post('https://ironrest.herokuapp.com/beerdbeers', { tastedBeer })
-  //     // .then(res => {
-  //     //   console.log(res)
-  //     // })
-  //   }
 
   return (
     <div>
@@ -201,8 +198,26 @@ function BeerDetails(props) {
             </ul>
 
             <div className="listButtons">
-              <button id="listBtn" onClick={() => {postBeer()}}>Add to Tasted</button>
-              <button id="listBtn" onClick={() => {postWish()}}>Add to Wish List</button>
+              {beersMy ? (<button
+                id="listBtn"
+                onClick={() => {
+                  postBeer();
+                }}
+              >
+                Add to Tasted
+              </button>) : (<button className="listButtonDone">Already Tasted</button>)}
+
+
+              {beersWish ? (<button
+                id="listBtn"
+                onClick={() => {
+                  postWish();
+                }}
+              >
+                Add to Wish List
+              </button>) : (<button className="listButtonDone">Already Dreamin</button>)}
+
+
             </div>
           </section>
 

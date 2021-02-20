@@ -25,7 +25,7 @@ function Home(props) {
         <Link to="./SearchBeers">
           <section className="homeSec" >
             <img src="./images/singleBeer2.jfif" alt="a single glass of beer" />
-            <p>Find A Beer</p>
+            <p>Find A Lucky Beer</p>
           </section>
         </Link>
 

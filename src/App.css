@@ -328,6 +328,13 @@ column-count: 3;
   font-weight: bold;
 }
 
+.listButtonDone {
+  background-color: #945600;
+  padding: 3px;
+  margin: 5px;
+  font-weight: bold;
+}
+
 .beerList {
   max-width: 400px;
   margin:auto;
