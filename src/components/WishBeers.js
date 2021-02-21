@@ -4,35 +4,31 @@ import axios from "axios";
 
 function WishBeers(props) {
   let [beers, setBeers] = useState([]);
+  let[beerDel, setBeerDel] = useState(1)
 
   useEffect(() => {
     axios.get(`https://ironrest.herokuapp.com/beerdWishList`).then((res) => {
       setBeers(res.data);
     });
-  }, []);
+  }, [beerDel]);
 
-  const removeBeer = () => {
-    // currentBeer.labels && currentBeer.labels.large
-    //   ? (tastedBeer = {
-    //       id: currentBeer.id,
-    //       name: currentBeer.name,
-    //       image: currentBeer.labels.large,
-    //     })
-    //   : (tastedBeer = {
-    //       id: currentBeer.id,
-    //       name: currentBeer.name,
-    //       image: "/images/noImage.jpg",
-    //     });
-    // axios
-    //   .post("https://ironrest.herokuapp.com/beerdWishList", tastedBeer)
-    //   .then((res) => {});
+  const removeBeer = (beerToRmv) => {
+    axios.delete(
+      `https://ironrest.herokuapp.com/deleteOne/beerdWishList?id=${beerToRmv}`
+    );
+    incrementCounter()
+    console.log(beerDel)
   };
+
+  const incrementCounter = () => {
+    setBeerDel(beerDel+1)
+  }
 
   const showBeers = () => {
     return beers.map((eachBeer) => {
       return (
-        <Link to={`/AllBeers/${eachBeer.id}`}>
-          <div className="beerList">
+        <div className="beerList">
+          <Link to={`/AllBeers/${eachBeer.id}`}>
             <section>
               <img
                 id="beerListImage"
@@ -41,14 +37,21 @@ function WishBeers(props) {
                 alt="beer label"
               />
             </section>
+          </Link>
+          
             <section id="beerListName">
-              <h1>{eachBeer.name}</h1>
-              <button   onClick={() => {
-                  removeBeer();
-                }}id="listBtn">Remove</button>
+            <Link to={`/AllBeers/${eachBeer.id}`}><h1>{eachBeer.name}</h1></Link>
+              <button
+                onClick={() => {
+                  removeBeer(eachBeer.id);
+                }}
+                id="listBtn"
+              >
+                Remove
+              </button>
             </section>
-          </div>
-        </Link>
+          
+        </div>
       );
     });
   };

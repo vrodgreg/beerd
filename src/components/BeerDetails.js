@@ -18,29 +18,39 @@ function BeerDetails(props) {
     setIsOpen(!isOpen);
   }
 
-  let [beersWish, setBeersWish] = useState([]);
+  let [beersWish, setBeersWish] = useState("");
 
   useEffect(() => {
     axios.get(`https://ironrest.herokuapp.com/beerdWishList`).then((res) => {
       let tempData=res.data
-      let wish=false
+      
+      let wish="false"
       for (let i=0; i<tempData.length; i++) {
-        if (tempData[i].id === props.match.params.id) {wish=true} 
+        if (tempData[i].id === props.match.params.id) {wish="true"} 
       }
+      console.log(wish)
       setBeersWish(wish);
+      console.log(beersWish)
     });
   }, []);
 
-  let [beersMy, setBeersMy] = useState([]);
+  let [beersMy, setBeersMy] = useState("");
 
   useEffect(() => {
     axios.get(`https://ironrest.herokuapp.com/beerdBeerList`).then((res) => {
       let tempData=res.data
-      let list=false
+      console.log(tempData)
+      let list="false"
+
+      if(tempData.length>0) {
+
       for (let i=0; i<tempData.length; i++) {
-        if (tempData[i].id === props.match.params.id) {list=true} 
+        if (tempData[i].id === props.match.params.id) {list="true"} 
       }
+    }
+    console.log(list)
       setBeersMy(list);
+      console.log(beersMy)
     });
   }, []);
 
@@ -198,7 +208,7 @@ function BeerDetails(props) {
             </ul>
 
             <div className="listButtons">
-              {beersMy ? (<button
+              {beersMy==="false" ? (<button
                 id="listBtn"
                 onClick={() => {
                   postBeer();
@@ -208,7 +218,7 @@ function BeerDetails(props) {
               </button>) : (<button className="listButtonDone">Already Tasted</button>)}
 
 
-              {beersWish ? (<button
+              {beersWish==="false" ? (<button
                 id="listBtn"
                 onClick={() => {
                   postWish();

@@ -3,36 +3,31 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 function MyBeers(props) {
+  let[beerDel, setBeerDel] = useState(0)
   let [beers, setBeers] = useState([]);
 
   useEffect(() => {
     axios.get(`https://ironrest.herokuapp.com/beerdBeerList`).then((res) => {
       setBeers(res.data);
     });
-  }, []);
+  }, [beerDel]);
 
-  const removeBeer = () => {
-    // currentBeer.labels && currentBeer.labels.large
-    //   ? (tastedBeer = {
-    //       id: currentBeer.id,
-    //       name: currentBeer.name,
-    //       image: currentBeer.labels.large,
-    //     })
-    //   : (tastedBeer = {
-    //       id: currentBeer.id,
-    //       name: currentBeer.name,
-    //       image: "/images/noImage.jpg",
-    //     });
-    // axios
-    //   .post("https://ironrest.herokuapp.com/beerdWishList", tastedBeer)
-    //   .then((res) => {});
+  const removeBeer = (beerToRmv) => {
+    axios.delete(
+      `https://ironrest.herokuapp.com/deleteOne/beerdBeerList?id=${beerToRmv}`
+    );
+    incrementCounter()
   };
+
+  const incrementCounter = () => {
+    setBeerDel(beerDel+1)
+  }
 
   const showBeers = () => {
     return beers.map((eachBeer) => {
       return (
-        <Link to={`/AllBeers/${eachBeer.id}`}>
-          <div className="beerList">
+        <div className="beerList">
+          <Link to={`/AllBeers/${eachBeer.id}`}>
             <section>
               <img
                 id="beerListImage"
@@ -41,19 +36,21 @@ function MyBeers(props) {
                 alt="beer label"
               />
             </section>
+          </Link>
+          
             <section id="beerListName">
-              <h1>{eachBeer.name}</h1>
+            <Link to={`/AllBeers/${eachBeer.id}`}><h1>{eachBeer.name}</h1></Link>
               <button
                 onClick={() => {
-                  removeBeer();
+                  removeBeer(eachBeer.id);
                 }}
                 id="listBtn"
               >
                 Remove
               </button>
             </section>
-          </div>
-        </Link>
+          
+        </div>
       );
     });
   };
