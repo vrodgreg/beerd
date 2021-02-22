@@ -41,8 +41,8 @@ function ByStyle(props) {
           </p>
           <ul className="styleList">
             {matchingStyle.map((eachStyle) => (
-              <Link to={`/ByStyleResults/${eachStyle.id}`}>
-              <li key={eachStyle.id}>{eachStyle.name}</li>
+              <Link to={`/ByStyle/${eachStyle.id}`}>
+              <li>{eachStyle.name}</li>
               </Link>
             ))}
           </ul>
