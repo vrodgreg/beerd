@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 
 function BreweryDetails(props) {
   let [brewery, setBrewery] = useState({});
   let [dadJokes, setDadJokes] = useState([]);
   let [beerList, setBeerList] = useState([]);
+  let history = useHistory();
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     axios
       .get(
         `https://iron-cors-anywhere.herokuapp.com/https://api.brewerydb.com/v2/breweries?ids=${props.match.params.id}&withSocialAccounts=Y&withGuilds=Y&withLocations=Y&key=4187045c8fc67d4d7636b85848c8ce67`
@@ -46,15 +48,17 @@ function BreweryDetails(props) {
 
   return (
     <div>
-      <Link to="/">
         <header>
+          <img onClick={() => history.goBack()} id="backButton" src="/images/backIcon.png" alt="back button" />
+          <Link id="headerLink" to="/">
           <img
             id="beerHouse"
             src="/images/beerHome.png"
             alt="little home icon"
           />
+          </Link>
+          <img id="backButton2" src="/images/backIcon.png" alt="back button" />
         </header>
-      </Link>
 
       <div className="detailsTop">
         <section className="detailsDetailSection">

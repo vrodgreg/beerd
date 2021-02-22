@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 // import ReactDOM from 'react-dom';
 import axios from "axios";
 import Modal from "react-modal";
 
 Modal.setAppElement("#root");
+
 
 function BeerDetails(props) {
   let [currentBeer, setCurrentBeer] = useState({});
@@ -19,8 +20,10 @@ function BeerDetails(props) {
   }
 
   let [beersWish, setBeersWish] = useState("");
+  let history = useHistory();
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     axios.get(`https://ironrest.herokuapp.com/beerdWishList`).then((res) => {
       let tempData=res.data
       
@@ -134,15 +137,17 @@ function BeerDetails(props) {
 
   return (
     <div>
-      <Link to="/">
         <header>
+          <img onClick={() => history.goBack()} id="backButton" src="/images/backIcon.png" alt="back button" />
+          <Link id="headerLink" to="/">
           <img
             id="beerHouse"
             src="/images/beerHome.png"
             alt="little home icon"
           />
+          </Link>
+          <img id="backButton2" src="/images/backIcon.png" alt="back button" />
         </header>
-      </Link>
 
       {/* THIS DIV IS THE MODAL CODE TO FOLLOW */}
       {/* <div className="App">

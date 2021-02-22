@@ -4,15 +4,17 @@ import { Link } from "react-router-dom";
 function Home(props) {
   return (
     <div>
-      <Link to="/">
         <header>
+          <img id="backButton2" src="/images/backIcon.png" alt="back button" />
+          
           <img
             id="beerHouse"
             src="/images/beerHome.png"
             alt="little home icon"
           />
+          
+          <img id="backButton2" src="/images/backIcon.png" alt="back button" />
         </header>
-      </Link>
 
       <div className="home">
         <Link to="./AllBeers">
@@ -22,7 +24,7 @@ function Home(props) {
           </section>
         </Link>
 
-        <Link to="./SearchBeers">
+        <Link to="./RandomBeer">
           <section className="homeSec" >
             <img src="./images/singleBeer2.jfif" alt="a single glass of beer" />
             <p>Find A Lucky Beer</p>

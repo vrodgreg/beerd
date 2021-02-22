@@ -1,9 +1,19 @@
 header {
   background-color: black;
   height: 70px;
-  width: 100%;
-  text-align: center;
+  width: 98%;
+  /* text-align: center; */
   padding-top: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+#headerLink {
+  height: 100%;
+
 }
 
 a:link {
@@ -23,7 +33,18 @@ a:hover {
 }
 
 #beerHouse {
-  height: 80%
+  height: 80%;
+
+}
+
+#backButton {
+  height: 50%;
+  margin-top: -20px;
+}
+
+#backButton2 {
+  height: 50%;
+  visibility: hidden;
 }
 
 
@@ -299,15 +320,13 @@ column-count: 3;
 .mymodal {
   position: fixed;
   top: 50%;
-  left: 50%;
+  left: 40%;
   transform: translate(-50%, -50%);
-  border: 1px solid #ccc;
   background: #f1af90;
-  overflow: auto;
+  overflow: scroll;
   border-radius: 4px;
   outline: none;
-  padding: 20px;
-  rotate: 6deg;
+  padding: 10px;
   box-shadow:10px 10px 7px #945600
 }
 

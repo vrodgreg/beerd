@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 
 function WishBeers(props) {
   let [beers, setBeers] = useState([]);
   let[beerDel, setBeerDel] = useState(1)
+  let history = useHistory();
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     axios.get(`https://ironrest.herokuapp.com/beerdWishList`).then((res) => {
       setBeers(res.data);
     });
@@ -58,15 +60,17 @@ function WishBeers(props) {
 
   return (
     <div>
-      <Link to="/">
         <header>
+          <img onClick={() => history.goBack()} id="backButton" src="/images/backIcon.png" alt="back button" />
+          <Link id="headerLink" to="/">
           <img
             id="beerHouse"
             src="/images/beerHome.png"
             alt="little home icon"
           />
+          </Link>
+          <img id="backButton2" src="/images/backIcon.png" alt="back button" />
         </header>
-      </Link>
 
       <div className="beerListTop">
         <h1 id="beerListH1">My Beer Wishes</h1>
