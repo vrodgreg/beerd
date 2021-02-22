@@ -1,7 +1,7 @@
 header {
   background-color: black;
   height: 70px;
-  width: 98%;
+  width: 95%;
   /* text-align: center; */
   padding-top: 5px;
   display: flex;
@@ -45,6 +45,11 @@ a:hover {
 #backButton2 {
   height: 50%;
   visibility: hidden;
+}
+
+#backButton3 {
+  height: 50%;
+  /* visibility: hidden; */
 }
 
 
@@ -382,4 +387,32 @@ column-count: 3;
 #beerListH1 {
   color: white;
   text-align: center;
+}
+
+.comingSoon {
+  min-height: 800px;
+  color: white;
+  background-color: black;
+text-align: center;
+
+}
+
+.styleList {
+  list-style: none;
+
+}
+
+.byStyleList {
+  color: white;
+  margin: auto;
+
+  max-width: 800px;
+column-count: 3;
+margin-top: 20px;
+
+}
+
+.styleList li::before {
+  content: "■ ";
+  color: #E35F21;
 }

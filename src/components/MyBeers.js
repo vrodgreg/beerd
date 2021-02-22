@@ -3,27 +3,24 @@ import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 
 function MyBeers(props) {
+  window.scrollTo(0, 0)
   let[beerDel, setBeerDel] = useState(0)
   let [beers, setBeers] = useState([]);
   let history=useHistory();
 
   useEffect(() => {
-    window.scrollTo(0, 0)
+   
     axios.get(`https://ironrest.herokuapp.com/beerdBeerList`).then((res) => {
       setBeers(res.data);
     });
-  }, [beerDel]);
+  }, []);
 
   const removeBeer = (beerToRmv) => {
     axios.delete(
       `https://ironrest.herokuapp.com/deleteOne/beerdBeerList?id=${beerToRmv}`
     );
-    incrementCounter()
+      setBeers([])
   };
-
-  const incrementCounter = () => {
-    setBeerDel(beerDel+1)
-  }
 
   const showBeers = () => {
     return beers.map((eachBeer) => {

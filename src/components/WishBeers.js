@@ -19,7 +19,6 @@ function WishBeers(props) {
       `https://ironrest.herokuapp.com/deleteOne/beerdWishList?id=${beerToRmv}`
     );
     incrementCounter()
-    console.log(beerDel)
   };
 
   const incrementCounter = () => {

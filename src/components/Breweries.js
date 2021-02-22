@@ -20,7 +20,6 @@ function Breweries(props) {
       });
   }, []);
 
-  console.log(breweries)
   let locationCount = 1
 
   const showBreweries = () => {

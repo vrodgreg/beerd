@@ -9,7 +9,7 @@ function BreweryDetails(props) {
   let history = useHistory();
 
   useEffect(() => {
-    window.scrollTo(0, 0)
+    // window.scrollTo(0, 0)
     axios
       .get(
         `https://iron-cors-anywhere.herokuapp.com/https://api.brewerydb.com/v2/breweries?ids=${props.match.params.id}&withSocialAccounts=Y&withGuilds=Y&withLocations=Y&key=4187045c8fc67d4d7636b85848c8ce67`

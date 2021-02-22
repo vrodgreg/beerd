@@ -6,7 +6,6 @@ import Modal from "react-modal";
 
 Modal.setAppElement("#root");
 
-
 function RandomBeer(props) {
   let [currentBeer, setCurrentBeer] = useState({});
   let [dadJokes, setDadJokes] = useState([]);
@@ -86,21 +85,32 @@ function RandomBeer(props) {
       .then((res) => {});
   };
 
+  let [beerid, setBeerid] = useState("")
+
   useEffect(() => {
     let finalData={}
+    let beerid2 = ''
     axios
       .get(
         `https://iron-cors-anywhere.herokuapp.com/https://sandbox-api.brewerydb.com/v2/beer/random?&withBreweries=Y&withIngredients=Y&key=4187045c8fc67d4d7636b85848c8ce67`
       )
       .then((res) => {
         finalData=res.data.data
-        console.log("data", res.data.data)
-        console.log("finaldata", finalData)
-        setCurrentBeer(finalData);
-      });
+  beerid2=finalData.id
+        setBeerid=beerid2
+        GetAllData(beerid2)
+        });
   }, []);
 
-  console.log("currentBeer", currentBeer)
+  function GetAllData (bid) {
+    axios
+    .get(
+      `https://iron-cors-anywhere.herokuapp.com/https://sandbox-api.brewerydb.com/v2/beers?ids=${bid}&withBreweries=Y&withIngredients=Y&key=4187045c8fc67d4d7636b85848c8ce67`
+    )
+    .then((res) => {
+      setCurrentBeer(res.data.data[0]);
+    });
+  }
 
   useEffect(() => {
     axios
@@ -136,6 +146,10 @@ function RandomBeer(props) {
     ? (crDate = currentBeer.createDate.substr(0, 10))
     : (crDate = "None Given");
 
+  function NewRandom() {
+    setCurrentBeer([])
+  }
+
   return (
     <div>
         <header>
@@ -147,7 +161,7 @@ function RandomBeer(props) {
             alt="little home icon"
           />
           </Link>
-          <img id="backButton2" src="/images/backIcon.png" alt="back button" />
+          <img onClick={() => NewRandom()}id="backButton3" src="/images/4LeafClover.png" alt="back button" />
         </header>
 
       {/* THIS DIV IS THE MODAL CODE TO FOLLOW */}
@@ -232,11 +246,8 @@ function RandomBeer(props) {
               >
                 Add to Wish List
               </button>) : (<button className="listButtonDone">Already Dreamin</button>)}
-
-
             </div>
           </section>
-
           {currentBeer.labels ? (
             <img
               className="detailsImage"
@@ -251,7 +262,6 @@ function RandomBeer(props) {
             />
           )}
         </div>
-
         <div className="detailsDescription">
           <p>
             <b>Description</b>
@@ -286,7 +296,7 @@ function RandomBeer(props) {
 
             {currentBeer.breweries ? (
               <section className="brewerySect">
-                {currentBeer.breweries[0].images.squareLarge ? (
+                {currentBeer.breweries[0].images && currentBeer.breweries[0].images.squareLarge ? (
                   <Link to={`/Breweries/${currentBeer.breweries[0].id}`}>
                     <img
                       id="breweryImage"
@@ -409,6 +419,3 @@ function RandomBeer(props) {
 }
 
 export default RandomBeer;
-
-
-// https://api.brewerydb.com/v2/beer/random?&withBreweries=Y&withIngredients=Y&key=4187045c8fc67d4d7636b85848c8ce67

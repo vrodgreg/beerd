@@ -9,8 +9,6 @@ function AllBeers(props) {
 
   let history = useHistory();
 
-  console.log(props)
-
   useEffect(() => {
     window.scrollTo(0, 0)
     axios

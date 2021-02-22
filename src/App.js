@@ -18,6 +18,7 @@ import NearbyBeers from './components/NearbyBeers'
 import RandomBeer from './components/RandomBeer'
 import SearchBeers from './components/SearchBeers'
 import WishBeers from './components/WishBeers'
+import ByStyleResults from './components/ByStyleResults'
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route exact path="/Breweries" render={(props) => <Breweries {...props} />} />
         <Route exact path="/Breweries/:id" render={(props) => <BreweryDetails {...props} />} />
         <Route exact path="/ByStyle" render={(props) => <ByStyle {...props} />} />
+        <Route exact path="/ByStyle/:id" render={(props) => <ByStyleResults {...props} />} />
         <Route exact path="/MyBeers" render={(props) => <MyBeers {...props} />} />
         <Route exact path="/NearbyBeers" render={(props) => <NearbyBeers {...props} />} />
         <Route exact path="/RandomBeer" render={(props) => <RandomBeer {...props} />} />

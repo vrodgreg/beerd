@@ -12,6 +12,8 @@ function BeerDetails(props) {
   let [dadJokes, setDadJokes] = useState([]);
   let tastedBeer = {};
 
+  console.log(props)
+
   //>>>>>>>>>>>>>>>>>>line 14-18 is Modal
   const [isOpen, setIsOpen] = useState(false);
 
@@ -31,9 +33,7 @@ function BeerDetails(props) {
       for (let i=0; i<tempData.length; i++) {
         if (tempData[i].id === props.match.params.id) {wish="true"} 
       }
-      console.log(wish)
       setBeersWish(wish);
-      console.log(beersWish)
     });
   }, []);
 
@@ -42,7 +42,6 @@ function BeerDetails(props) {
   useEffect(() => {
     axios.get(`https://ironrest.herokuapp.com/beerdBeerList`).then((res) => {
       let tempData=res.data
-      console.log(tempData)
       let list="false"
 
       if(tempData.length>0) {
@@ -51,9 +50,7 @@ function BeerDetails(props) {
         if (tempData[i].id === props.match.params.id) {list="true"} 
       }
     }
-    console.log(list)
       setBeersMy(list);
-      console.log(beersMy)
     });
   }, []);
 

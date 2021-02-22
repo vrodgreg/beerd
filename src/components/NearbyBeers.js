@@ -8,32 +8,50 @@ function NearbyBeers(props) {
   let history = useHistory();
 
   useEffect(() => {
-    window.scrollTo(0, 0)
+      window.scrollTo(0, 0)
     axios
       .get(
         `https://iron-cors-anywhere.herokuapp.com/https://api.brewerydb.com/v2/breweries?withLocations=Y&key=4187045c8fc67d4d7636b85848c8ce67`
       )
       .then((res) => {
-        console.log('res', res)
         setLocations(res.data.data);
-console.log(locations)
+        console.log(locations)
       });
-
-      
+      GetAllRegions()
   }, []);
 
-  console.log(locations)
-let regionsArr=[]
-  for (let i=0; i<locations.length; i++) {
-    if (locations[i].locations) {
-      for (let j=0; j< locations[i].length; j++){
-        regionsArr.push(locations[i].locations.region)
+  let regionsArr=[]
+  let reducedRegionsArr =[]
+  let len = []
+
+  function GetAllRegions () {
+
+    for (let i=0; i<locations.length; i++) {
+      console.log(locations[i].locations)
+      len = locations[i].locations
+      // console.log("len", len)
+      if (len) {
+        
+        for (let j=0; j< len.length; j++){
+          console.log(len[j].region)
+          regionsArr.push(len[j].region)
+        }
       }
     }
- 
+    regionsArr.sort()
+    console.log(regionsArr)
+
+   regionsArr.forEach(element => {
+     if (!reducedRegionsArr.includes(element)) {
+       reducedRegionsArr.push(element)
+     }
+   })
+    console.log(reducedRegionsArr)
+
+    return(regionsArr)
+
   }
 
-  console.log('regionsArr', regionsArr)
 
 
 
@@ -50,6 +68,11 @@ let regionsArr=[]
           </Link>
           <img id="backButton2" src="/images/backIcon.png" alt="back button" />
         </header>
+
+        <div className="comingSoon">
+      <h1>COMING SOON</h1>
+    </div>
+    
     </div>
   );
 }
