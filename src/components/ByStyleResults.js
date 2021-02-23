@@ -24,6 +24,7 @@ function ByStyleResults(props) {
         console.log("TEMP", temp)
         console.log(props.match.params.id)
         damnit=parseInt(props.match.params.id)-1
+        console.log("DAMN", damnit)
         
 
         setStyles(temp[damnit]);
